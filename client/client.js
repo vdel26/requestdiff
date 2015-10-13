@@ -8,7 +8,7 @@
 
   button.addEventListener('click', start);
   first.value = 'http://reqr.es/api/users?page=1'
-  second.value = 'http://httpbin.org/xml'
+  second.value = 'http://reqr.es/api/users?page=3'
 
   function prettyPrint (response) {
     try {
@@ -24,7 +24,6 @@
     var res = {};
     xhr.open('GET', url, true);
     xhr.onload = function (evt) {
-      // res.response = xhr.response;
       cb(null, xhr.response);
     };
     xhr.onerror = function (evt) {
@@ -57,16 +56,14 @@
     var url = '/proxy?url1=' + firstURL + '&url2=' + secondURL;
     request(url, function (err, res) {
       var data = JSON.parse(res);
+      compare(prettyPrint(data.first.headers),
+              prettyPrint(data.second.headers),
+              headers);
       compare(prettyPrint(data.first.body),
               prettyPrint(data.second.body),
               body);
+
     });
-    // request(firstURL, function (firstRes) {
-    //   request(secondURL, function (secondRes) {
-    //     compare(firstRes.headers, secondRes.headers, headers);
-    //     compare(firstRes.responsePretty, secondRes.responsePretty, body);
-    //   });
-    // });
   }
 
 })();

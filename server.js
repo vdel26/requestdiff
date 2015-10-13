@@ -9,18 +9,27 @@ const request = require('request');
 
 const serve = statics('client');
 
+/**
+ * Extract important info from API response
+ * and normalize field formats
+ * @param  {Object} res1
+ * @param  {Object} res2
+ *   - res.body       - String
+ *   - res.headers    - Object
+ *   - res.statusCode - Number
+ * @return {Object}
+ */
+
 const formatRes = (res1, res2) => {
   return {
     first: {
       body: res1.body,
-      type: res1.headers['content-type'],
-      headers: res1.headers,
+      headers: JSON.stringify(res1.headers),
       status: res1.statusCode
     },
     second: {
       body: res2.body,
-      type: res2.headers['content-type'],
-      headers: res2.headers,
+      headers: JSON.stringify(res2.headers),
       status: res2.statusCode
     }
   };
@@ -34,7 +43,7 @@ const proxy = (q, cb) => {
   console.log(q);
   request(q.url1, (err, res1) => {
     request(q.url2, (err, res2) => {
-      let msg = formatRes(res1, res2);
+      const msg = formatRes(res1, res2);
       console.log(msg);
       cb(null, msg);
     });
@@ -51,7 +60,7 @@ const handler = (req, res) => {
 
   if (parsedUrl.pathname === '/proxy') {
     res.writeHead(200, 'Content-Type: application/json');
-    var params = query.parse(parsedUrl.query);
+    const params = query.parse(parsedUrl.query);
     proxy(params, (err, msg) => {
       return res.end(JSON.stringify(msg));
     });
