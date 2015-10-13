@@ -21,7 +21,6 @@
 
   function request (url, cb) {
     var xhr = new XMLHttpRequest();
-    var res = {};
     xhr.open('GET', url, true);
     xhr.onload = function (evt) {
       cb(null, xhr.response);
@@ -34,10 +33,9 @@
 
   function compare (first, second, element) {
     var diff = JsDiff.diffLines(first, second);
-    diff.forEach(function(part){
+    diff.forEach(function (part){
       // green for additions, red for deletions
       // grey for common parts
-      var color;
       var color = part.added ? 'green' :
         part.removed ? 'red' : 'grey';
       var span = document.createElement('span');
@@ -49,11 +47,13 @@
   }
 
   function start () {
-    headers.innerHTML = '';
-    body.innerHTML = '';
     var firstURL = first.value;
     var secondURL = second.value;
     var url = '/proxy?url1=' + firstURL + '&url2=' + secondURL;
+
+    headers.innerHTML = '';
+    body.innerHTML = '';
+
     request(url, function (err, res) {
       var data = JSON.parse(res);
       compare(prettyPrint(data.first.headers),
