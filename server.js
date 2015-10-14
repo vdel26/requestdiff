@@ -67,9 +67,7 @@ const handler = (req, res) => {
   }
   else {
     console.log(parsedUrl.path);
-    serve(req, res, (req, res) => {
-      return res.end();
-    });
+    serve(req, res, () => { res.end() });
   }
 };
 

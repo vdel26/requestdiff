@@ -8,7 +8,7 @@
 
   button.addEventListener('click', start);
   first.value = 'http://reqr.es/api/users?page=1'
-  second.value = 'http://reqr.es/api/users?page=3'
+  second.value = 'http://reqr.es/api/users?page=6'
 
   function prettyPrint (response) {
     try {
