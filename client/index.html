@@ -6,18 +6,36 @@
 </head>
 <body>
 
-<section id="inputs">
-  <input class="url" type="url" id="first"></input>
-  <input class="url" type="url" id="second"></input>
-  <button type="button">Go!</button>
+<header>
+  <h1 class="title">Requestdiff</h1>
+</header>
+
+<section class="inputs">
+  <label class="inputs-label">
+    URL 1
+    <input class="inputs-url js-first" type="url"></input>
+  </label>
+  <label class="inputs-label">
+    URL 2
+    <input class="inputs-url js-second" type="url"></input>
+  </label>
+
+  <button type="button">COMPARE</button>
 </section>
 
-<section id="results">
-  <h3>Headers</h3>
-  <pre id="headers"></pre>
-  <h3>Body</h3>
-  <pre id="body"></pre>
+<section class="results results--headers">
+  <h3 class="results-title">Headers</h3>
+  <pre class="results-content js-headers" id="headers"></pre>
 </section>
+
+<section class="results results--body">
+  <h3 class="results-title">Body</h3>
+  <pre class="results-content js-body" id="body"></pre>
+</section>
+
+<footer>
+  <span>made by @lechienvic</span>
+</footer>
 
 <script src="app.js"></script>
 

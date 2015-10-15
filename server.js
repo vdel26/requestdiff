@@ -61,13 +61,11 @@ const handler = (req, res) => {
   if (parsedUrl.pathname === '/proxy') {
     res.writeHead(200, 'Content-Type: application/json');
     const params = query.parse(parsedUrl.query);
-    proxy(params, (err, msg) => {
-      return res.end(JSON.stringify(msg));
-    });
+    proxy(params, (err, msg) => res.end(JSON.stringify(msg)));
   }
   else {
     console.log(parsedUrl.path);
-    serve(req, res, () => { res.end() });
+    serve(req, res, () => ures.end());
   }
 };
 

@@ -1,0 +1,33 @@
+$lightblue: #F4F7FB;
+$brightblue: #4054B2;
+$mediumblue: #4054B2;
+$darkblue: #4D5B99;
+$black: #333;
+
+html, body {
+  height: 100%;
+  background-color: $lightblue;
+  font-family: -apple-system, 'Roboto', 'Helvetica Neue', sans-serif;
+}
+
+.inputs {
+  display: flex;
+  justify-content: center;
+}
+
+.inputs-label {
+  display: inline-block;
+}
+
+.inputs-url {
+  display: block;
+}
+
+.results {
+  display: flex;
+}
+
+.results-content {
+  background-color: white;
+  color: $black;
+}

@@ -1,0 +1,29 @@
+html, body {
+  height: 100%;
+  background-color: #F4F7FB;
+  font-family: -apple-system, 'Roboto', 'Helvetica Neue', sans-serif; }
+
+.inputs {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
+
+.inputs-label {
+  display: inline-block; }
+
+.inputs-url {
+  display: block; }
+
+.results {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex; }
+
+.results-content {
+  background-color: white; }

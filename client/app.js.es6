@@ -1,10 +1,10 @@
 (function () {
 
   var button = document.querySelector('button');
-  var first = document.querySelector('#first');
-  var second = document.querySelector('#second');
-  var headers = document.querySelector('#headers');
-  var body = document.querySelector('#body');
+  var first = document.querySelector('.js-first');
+  var second = document.querySelector('.js-second');
+  var headers = document.querySelector('.js-headers');
+  var body = document.querySelector('.js-body');
 
   button.addEventListener('click', start);
   first.value = 'http://reqr.es/api/users?page=1'
