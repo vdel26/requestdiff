@@ -1,33 +1,152 @@
 $lightblue: #F4F7FB;
-$brightblue: #4054B2;
+$brightblue: #5C7AFF;
 $mediumblue: #4054B2;
 $darkblue: #4D5B99;
 $black: #333;
+$container-width: 840px;
 
 html, body {
   height: 100%;
+  margin: 0;
   background-color: $lightblue;
+  box-sizing: border-box;
   font-family: -apple-system, 'Roboto', 'Helvetica Neue', sans-serif;
 }
 
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+// debug layout
+// * {
+//   border: 1px solid red;
+// }
+
+.title {
+  margin: 2rem auto 3rem;
+  font-weight: 800;
+  font-style: italic;
+  color: $darkblue;
+}
+
 .inputs {
-  display: flex;
-  justify-content: center;
+  display: block;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 32em) {
+  .inputs, .title {
+    width: $container-width;
+  }
+}
+
+button {
+  height: 3rem;
+  width: 100%;
+  vertical-align: 2px;
+  border: none;
+  border-radius: 30px;
+  font-size: 0.875rem;
+  color: white;
+  background-color: $darkblue;
+  cursor: pointer;
+  outline: none;
+  transition: 0.2s all;
+}
+
+@media screen and (min-width: 32em) {
+  button {
+    display: inline-block;
+    width: 112px;
+
+    &:hover {
+      background-color: $brightblue;
+      box-shadow: 0 0 0 4px rgba(92, 122, 255, 0.5);
+    }
+
+    &:active {
+      background-color: $darkblue;
+      box-shadow: none;
+    }
+  }
 }
 
 .inputs-label {
-  display: inline-block;
+  display: block;
+  color: $mediumblue;
+  font-weight: 500;
 }
 
 .inputs-url {
   display: block;
+  font-size: 1rem;
+  margin: 0.5rem 1rem 0 0;
+  padding: 0.5rem;
+  border: 1px solid rgba(92, 122, 255, 0.5);
+  border-radius: 4px;
+  outline: none;
+  width: 100%;
+  color: $black;
+  transition: 0.2s all;
+}
+
+@media screen and (min-width: 32em) {
+  .inputs-label {
+    display: inline-block;
+  }
+  .inputs-url {
+    width: 300px;
+
+    &:focus {
+      box-shadow: 0 0 0 3px rgba(92, 122, 255, 0.5);
+    }
+  }
 }
 
 .results {
-  display: flex;
+  display: block;
+}
+
+.results-title {
+  margin: 2rem auto 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: $mediumblue;
+}
+
+.results-bg {
+  width: 100%;
+  padding: 1rem 0;
+  background-color: white;
+  box-shadow: 0 1px 2px rgba(51, 61, 71, 0.12);
 }
 
 .results-content {
-  background-color: white;
+  margin: 0 auto;
+  background-color: transparent;
   color: $black;
+}
+
+.diff-line {
+  color: grey;
+}
+
+.diff-line--red {
+  color: red;
+}
+
+.diff-line--green {
+  color: green;
+}
+
+@media screen and (min-width: 32em) {
+  .results-title, .results-content {
+    width: $container-width;
+  }
+}
+
+footer {
+  margin: 5rem auto 1rem;
+  text-align: center;
+  color: $darkblue;
 }
