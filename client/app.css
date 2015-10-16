@@ -70,6 +70,14 @@ button {
   .inputs-url:focus {
     box-shadow: 0 0 0 3px rgba(92, 122, 255, 0.5); }
 
+.inputs-url--red {
+  border: 0;
+  box-shadow: 0 0 0 3px rgba(255, 59, 48, 0.3); }
+
+.inputs-url--green {
+  border: 0;
+  box-shadow: 0 0 0 3px rgba(90, 249, 178, 0.3); }
+
 .results {
   display: block;
   position: relative;

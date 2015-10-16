@@ -9,6 +9,8 @@
   const animateIntro = () => {
     let elems = document.querySelectorAll('.is-animated');
     [...elems].forEach((el) => el.classList.remove('is-animated'));
+    first.classList.add('inputs-url--red');
+    second.classList.add('inputs-url--green');
   };
 
   const prettyPrint = (response) => {

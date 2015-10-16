@@ -1200,6 +1200,8 @@ function _toConsumableArray2(arr) { if (Array.isArray(arr)) { for (var i = 0, ar
 		[].concat(_toConsumableArray2(elems)).forEach(function (el) {
 			return el.classList.remove('is-animated');
 		});
+		first.classList.add('inputs-url--red');
+		second.classList.add('inputs-url--green');
 	};
 
 	var prettyPrint = function prettyPrint(response) {
