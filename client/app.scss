@@ -26,28 +26,25 @@ html, body {
 // }
 
 .title {
-  margin: 1rem auto 2rem;
+  display: block;
+  margin: 1rem 0 2rem;
   padding: 0 1rem;
+  transition: 0.3s ease transform;
+}
+
+.title-text {
+  font-size: 2rem;
   font-weight: 800;
   font-style: italic;
-  color: $darkblue;
+  transition: 0.3s ease all;
 }
 
 .inputs {
   display: block;
   margin: 0 auto;
   padding: 0 1rem;
-}
-
-@media screen and (min-width: 32em) {
-  .inputs, .title {
-    width: $container-width;
-    padding: 0;
-  }
-
-  .title {
-    margin: 2rem auto 3rem;
-  }
+  transition: 0.3s ease transform;
+  transform: translateY(0);
 }
 
 button {
@@ -67,24 +64,6 @@ button {
   &:active {
     background-color: $brightblue;
     box-shadow: 0 0 0 4px rgba(92, 122, 255, 0.5);
-  }
-}
-
-@media screen and (min-width: 32em) {
-  button {
-    display: inline-block;
-    width: 112px;
-    margin: 0;
-
-    &:hover {
-      background-color: $brightblue;
-      box-shadow: 0 0 0 4px rgba(92, 122, 255, 0.5);
-    }
-
-    &:active {
-      background-color: $darkblue;
-      box-shadow: none;
-    }
   }
 }
 
@@ -111,20 +90,12 @@ button {
   }
 }
 
-@media screen and (min-width: 32em) {
-  .inputs-label {
-    display: inline-block;
-    margin: 0.5rem 1rem 0 0;
-  }
-
-  .inputs-url {
-    width: 300px;
-  }
-}
-
 .results {
   display: block;
   position: relative;
+  transition: 0.3s ease all;
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .results::after {
@@ -148,12 +119,6 @@ button {
   color: $mediumblue;
 }
 
-@media screen and (min-width: 32em) {
-  .results-title {
-    padding: 0;
-  }
-}
-
 .results-bg {
   width: 100%;
   padding: 1rem 0 0;
@@ -168,12 +133,6 @@ button {
   max-height: 500px;
   max-width: 100%;
   overflow: scroll;
-}
-
-@media screen and (min-width: 32em) {
-  .results-title, .results-content {
-    width: $container-width;
-  }
 }
 
 .diff-line {
@@ -192,7 +151,72 @@ button {
 }
 
 footer {
-  margin: 5rem auto 1rem;
+  margin: 5rem 0 1rem;
   text-align: center;
   color: $darkblue;
+}
+
+@media screen and (min-width: 32em) {
+  .inputs, .title {
+    width: $container-width;
+    padding: 0;
+  }
+
+  .title {
+    margin: 2rem auto 3rem;
+  }
+
+  button {
+    display: inline-block;
+    width: 112px;
+    margin: 0;
+
+    &:hover {
+      background-color: $brightblue;
+      box-shadow: 0 0 0 4px rgba(92, 122, 255, 0.5);
+    }
+
+    &:active {
+      background-color: $darkblue;
+      box-shadow: none;
+    }
+  }
+
+  .inputs-label {
+    display: inline-block;
+    margin: 0.5rem 1rem 0 0;
+  }
+
+  .inputs-url {
+    width: 300px;
+  }
+
+  .results-title {
+    padding: 0;
+  }
+
+  .results-title, .results-content {
+    width: $container-width;
+  }
+
+  /**
+   * response animation
+   */
+
+  .title.is-animated {
+    transform: translateX(25%) translateY(100%);
+
+    & > .title-text {
+      font-size: 4rem;
+    }
+  }
+
+  .inputs.is-animated {
+    transform: translateY(50%);
+  }
+
+  .results.is-animated {
+    opacity: 0;
+    transform: translateY(20rem);
+  }
 }

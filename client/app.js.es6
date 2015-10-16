@@ -6,6 +6,11 @@
   let headers = document.querySelector('.js-headers');
   let body = document.querySelector('.js-body');
 
+  const animateIntro = () => {
+    let elems = document.querySelectorAll('.is-animated');
+    [...elems].forEach((el) => el.classList.remove('is-animated'));
+  };
+
   const prettyPrint = (response) => {
     try {
       return JSON.stringify(JSON.parse(response), null, '\t');
@@ -17,6 +22,7 @@
     let xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
     xhr.onload = function (evt) {
+      animateIntro();
       cb(null, xhr.response);
     };
     xhr.onerror = function (evt) {
@@ -60,12 +66,11 @@
       compare(prettyPrint(data.first.body),
               prettyPrint(data.second.body),
               body);
-
     });
   }
 
   button.addEventListener('click', start);
   first.value = 'http://reqr.es/api/users?page=1';
-  second.value = 'http://reqr.es/api/users?page=6';
+  second.value = 'http://reqr.es/api/users?page=3';
 
 })();

@@ -8,10 +8,18 @@
 <body>
 
 <header>
-  <h1 class="title">Requestdiff</h1>
+ <svg class="title is-animated" width=260 height=64 version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="textgradient" x1="0" x2="1" y1="0" y2="0">
+          <stop stop-color="#2D3A71" offset="0%"/>
+          <stop stop-color="#707FC1" offset="100%"/>
+      </linearGradient>
+    </defs>
+    <text class="title-text" x=0 y=50 fill="url(#textgradient)">Requestdiff</text>
+  </svg>
 </header>
 
-<section class="inputs">
+<section class="inputs is-animated">
   <label class="inputs-label">
     URL 1
     <input class="inputs-url js-first" type="url"></input>
@@ -24,14 +32,14 @@
   <button type="button">COMPARE</button>
 </section>
 
-<section class="results results--headers">
+<section class="results is-animated results--headers">
   <h3 class="results-title">HEADERS</h3>
   <div class="results-bg">
     <pre class="results-content js-headers"></pre>
   </div>
 </section>
 
-<section class="results results--body">
+<section class="results is-animated results--body">
   <h3 class="results-title">BODY</h3>
   <div class="results-bg">
     <pre class="results-content js-body"></pre>

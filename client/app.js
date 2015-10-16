@@ -1,3 +1,5 @@
+function _toConsumableArray2(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i]; return arr2; } else { return Array.from(arr); } }
+
 (function webpackUniversalModuleDefinition(root, factory) {
 	if (typeof exports === 'object' && typeof module === 'object') module.exports = factory();else if (typeof define === 'function' && define.amd) define([], factory);else if (typeof exports === 'object') exports["JsDiff"] = factory();else root["JsDiff"] = factory();
 })(this, function () {
@@ -1193,6 +1195,13 @@
 	var headers = document.querySelector('.js-headers');
 	var body = document.querySelector('.js-body');
 
+	var animateIntro = function animateIntro() {
+		var elems = document.querySelectorAll('.is-animated');
+		[].concat(_toConsumableArray2(elems)).forEach(function (el) {
+			return el.classList.remove('is-animated');
+		});
+	};
+
 	var prettyPrint = function prettyPrint(response) {
 		try {
 			return JSON.stringify(JSON.parse(response), null, '\t');
@@ -1205,6 +1214,7 @@
 		var xhr = new XMLHttpRequest();
 		xhr.open('GET', url, true);
 		xhr.onload = function (evt) {
+			animateIntro();
 			cb(null, xhr.response);
 		};
 		xhr.onerror = function (evt) {
@@ -1250,6 +1260,6 @@
 
 	button.addEventListener('click', start);
 	first.value = 'http://reqr.es/api/users?page=1';
-	second.value = 'http://reqr.es/api/users?page=6';
+	second.value = 'http://reqr.es/api/users?page=3';
 })();
 /***/ /***/ /***/ /***/ /***/ /***/ /***/ /***/ /***/ /***/ /***/ /***/ /***/ /***/
