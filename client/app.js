@@ -1193,19 +1193,15 @@
 	var headers = document.querySelector('.js-headers');
 	var body = document.querySelector('.js-body');
 
-	button.addEventListener('click', start);
-	first.value = 'http://reqr.es/api/users?page=1';
-	second.value = 'http://reqr.es/api/users?page=6';
-
-	function prettyPrint(response) {
+	var prettyPrint = function prettyPrint(response) {
 		try {
 			return JSON.stringify(JSON.parse(response), null, '\t');
 		} catch (e) {
 			return response;
 		}
-	}
+	};
 
-	function request(url, cb) {
+	var request = function request(url, cb) {
 		var xhr = new XMLHttpRequest();
 		xhr.open('GET', url, true);
 		xhr.onload = function (evt) {
@@ -1215,22 +1211,29 @@
 			throw new Error(xhr.statusText);
 		};
 		xhr.send();
-	}
+	};
 
-	function compare(first, second, element) {
+	var compare = function compare(first, second, element) {
 		var diff = JsDiff.diffLines(first, second);
-		diff.forEach(function (part) {
-			// green for additions, red for deletions
-			// grey for common parts
-			var color = part.added ? 'green' : part.removed ? 'red' : 'grey';
-			var span = document.createElement('span');
-			span.style.color = color;
-			span.appendChild(document.createTextNode(part.value));
-			element.appendChild(span);
-		});
-	}
+		var frag = document.createDocumentFragment();
 
-	function start() {
+		diff.forEach(function (part) {
+			var classes = ['diff-line'];
+			if (part.added) classes.push('diff-line--green');else if (part.removed) classes.push('diff-line--red');
+
+			var span = document.createElement('span');
+			classes.forEach(function (c) {
+				return span.classList.add(c);
+			});
+
+			span.appendChild(document.createTextNode(part.value));
+			frag.appendChild(span);
+		});
+
+		element.appendChild(frag);
+	};
+
+	var start = function start() {
 		var firstURL = first.value;
 		var secondURL = second.value;
 		var url = '/proxy?url1=' + firstURL + '&url2=' + secondURL;
@@ -1243,6 +1246,10 @@
 			compare(prettyPrint(data.first.headers), prettyPrint(data.second.headers), headers);
 			compare(prettyPrint(data.first.body), prettyPrint(data.second.body), body);
 		});
-	}
+	};
+
+	button.addEventListener('click', start);
+	first.value = 'http://reqr.es/api/users?page=1';
+	second.value = 'http://reqr.es/api/users?page=6';
 })();
 /***/ /***/ /***/ /***/ /***/ /***/ /***/ /***/ /***/ /***/ /***/ /***/ /***/ /***/

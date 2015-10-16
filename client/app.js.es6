@@ -1,26 +1,20 @@
 (function () {
 
-  var button = document.querySelector('button');
-  var first = document.querySelector('.js-first');
-  var second = document.querySelector('.js-second');
-  var headers = document.querySelector('.js-headers');
-  var body = document.querySelector('.js-body');
+  let button = document.querySelector('button');
+  let first = document.querySelector('.js-first');
+  let second = document.querySelector('.js-second');
+  let headers = document.querySelector('.js-headers');
+  let body = document.querySelector('.js-body');
 
-  button.addEventListener('click', start);
-  first.value = 'http://reqr.es/api/users?page=1'
-  second.value = 'http://reqr.es/api/users?page=6'
-
-  function prettyPrint (response) {
+  const prettyPrint = (response) => {
     try {
       return JSON.stringify(JSON.parse(response), null, '\t');
     }
-    catch (e) {
-      return response;
-    }
+    catch (e) { return response; }
   }
 
-  function request (url, cb) {
-    var xhr = new XMLHttpRequest();
+  const request = (url, cb) => {
+    let xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
     xhr.onload = function (evt) {
       cb(null, xhr.response);
@@ -31,31 +25,35 @@
     xhr.send();
   }
 
-  function compare (first, second, element) {
-    var diff = JsDiff.diffLines(first, second);
+  const compare = (first, second, element) => {
+    let diff = JsDiff.diffLines(first, second);
+    let frag = document.createDocumentFragment();
+
     diff.forEach(function (part){
-      // green for additions, red for deletions
-      // grey for common parts
-      var color = part.added ? 'green' :
-        part.removed ? 'red' : 'grey';
-      var span = document.createElement('span');
-      span.style.color = color;
-      span.appendChild(document
-          .createTextNode(part.value));
-      element.appendChild(span);
+      let classes = ['diff-line'];
+      if (part.added) classes.push('diff-line--green');
+      else if (part.removed) classes.push('diff-line--red');
+
+      let span = document.createElement('span');
+      classes.forEach((c) => span.classList.add(c));
+
+      span.appendChild(document.createTextNode(part.value));
+      frag.appendChild(span);
     });
+
+    element.appendChild(frag);
   }
 
-  function start () {
-    var firstURL = first.value;
-    var secondURL = second.value;
-    var url = '/proxy?url1=' + firstURL + '&url2=' + secondURL;
+  const start = () => {
+    let firstURL = first.value;
+    let secondURL = second.value;
+    let url = `/proxy?url1=${firstURL}&url2=${secondURL}`;
 
     headers.innerHTML = '';
     body.innerHTML = '';
 
     request(url, function (err, res) {
-      var data = JSON.parse(res);
+      let data = JSON.parse(res);
       compare(prettyPrint(data.first.headers),
               prettyPrint(data.second.headers),
               headers);
@@ -65,5 +63,9 @@
 
     });
   }
+
+  button.addEventListener('click', start);
+  first.value = 'http://reqr.es/api/users?page=1';
+  second.value = 'http://reqr.es/api/users?page=6';
 
 })();
