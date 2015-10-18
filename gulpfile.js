@@ -13,7 +13,7 @@ var rename       = require('gulp-rename');
 
 gulp.task('js', function() {
   return gulp.src(['client/vendor/*.js', 'client/*.js.es6'])
-    .pipe(concat('client/app.js'))
+    .pipe(concat('client/dist/app.js'))
     .pipe(babel({ blacklist: ['useStrict'] }))
     .pipe(gulp.dest('.'));
 });
@@ -22,21 +22,21 @@ gulp.task('scss', function () {
   return gulp.src('client/*.scss')
     .pipe(sass())
     .pipe(autoprefixer())
-    .pipe(gulp.dest('client/'));
+    .pipe(gulp.dest('client/dist/'));
 });
 
 gulp.task('js-dist', ['js'] ,function () {
-  return gulp.src('client/app.js')
+  return gulp.src('client/dist/app.js')
     .pipe(uglify())
     .pipe(rename({ extname: '.min.js' }))
-    .pipe(gulp.dest('.'));
+    .pipe(gulp.dest('client/dist/'));
 });
 
 gulp.task('css-dist', ['scss'] ,function () {
-  return gulp.src('client/app.css')
+  return gulp.src('client/dist/app.css')
     .pipe(minifyCss())
     .pipe(rename({ extname: '.min.css' }))
-    .pipe(gulp.dest('.'));
+    .pipe(gulp.dest('client/dist/'));
 });
 
 gulp.task('lint', function () {

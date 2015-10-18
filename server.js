@@ -41,8 +41,8 @@ const formatRes = (res1, res2) => {
 
 const proxy = (q, cb) => {
   console.log(q);
-  request(q.url1, (err, res1) => {
-    request(q.url2, (err, res2) => {
+  request(q.url1, (err1, res1) => {
+    request(q.url2, (err2, res2) => {
       const msg = formatRes(res1, res2);
       console.log(msg);
       cb(null, msg);
