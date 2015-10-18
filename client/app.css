@@ -8,8 +8,34 @@ html, body {
 *, *:before, *:after {
   box-sizing: inherit; }
 
+body {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column; }
+
+main {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 0 auto;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto; }
+
+header, footer {
+  -webkit-box-flex: 0;
+  -webkit-flex: none;
+      -ms-flex: none;
+          flex: none; }
+
 .title {
   display: block;
+  height: 4rem;
+  width: 100%;
   margin: 1rem 0 2rem;
   padding: 0 1rem;
   -webkit-transition: 0.3s ease -webkit-transform;
@@ -135,16 +161,18 @@ button {
   background-color: rgba(90, 249, 178, 0.15); }
 
 footer {
-  margin: 5rem 0 1rem;
+  margin: 5rem 0 2rem;
   text-align: center;
   color: #4D5B99; }
 
 @media screen and (min-width: 32em) {
-  .inputs, .title {
+  .inputs {
     width: 840px;
     padding: 0; }
   .title {
-    margin: 2rem auto 3rem; }
+    width: 840px;
+    margin: 2rem auto 3rem;
+    padding: 0; }
   button {
     display: inline-block;
     width: 112px;
@@ -168,9 +196,9 @@ footer {
    * response animation
    */
   .title.is-animated {
-    -webkit-transform: translateX(25%) translateY(100%);
-        -ms-transform: translateX(25%) translateY(100%);
-            transform: translateX(25%) translateY(100%); }
+    -webkit-transform: translateX(255px) translateY(100%);
+        -ms-transform: translateX(255px) translateY(100%);
+            transform: translateX(255px) translateY(100%); }
     .title.is-animated > .title-text {
       font-size: 4rem; }
   .inputs.is-animated {

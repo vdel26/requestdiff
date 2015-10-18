@@ -1261,7 +1261,7 @@ function _toConsumableArray2(arr) { if (Array.isArray(arr)) { for (var i = 0, ar
 	};
 
 	button.addEventListener('click', start);
-	first.value = 'http://reqr.es/api/users?page=1';
-	second.value = 'http://reqr.es/api/users?page=3';
+	first.value = 'https://httpbin.org/get';
+	second.value = 'https://httpbin.org/get?show_env=1';
 })();
 /***/ /***/ /***/ /***/ /***/ /***/ /***/ /***/ /***/ /***/ /***/ /***/ /***/ /***/

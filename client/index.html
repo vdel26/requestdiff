@@ -3,54 +3,57 @@
 <head>
   <title>Requestdiff</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="stylesheet" href="app.css">
+  <link href='https://fonts.googleapis.com/css?family=Roboto:500,700italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="dist/app.css">
 </head>
 <body>
 
-<header>
- <svg class="title is-animated" width=260 height=64 version="1.1" xmlns="http://www.w3.org/2000/svg">
+<header class="is-animated">
+ <svg class="title is-animated" version="1.1" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <linearGradient id="textgradient" x1="0" x2="1" y1="0" y2="0">
           <stop stop-color="#2D3A71" offset="0%"/>
           <stop stop-color="#707FC1" offset="100%"/>
       </linearGradient>
     </defs>
-    <text class="title-text" x=0 y=50 fill="url(#textgradient)">Requestdiff</text>
+    <text class="title-text" x=0 y=50 fill="url(#textgradient)" xml:space="preserve">Requestdiff </text>
   </svg>
 </header>
 
-<section class="inputs is-animated">
-  <label class="inputs-label">
-    URL 1
-    <input class="inputs-url js-first" type="url"></input>
-  </label>
-  <label class="inputs-label">
-    URL 2
-    <input class="inputs-url js-second" type="url"></input>
-  </label>
+<main>
+  <section class="inputs is-animated">
+    <label class="inputs-label">
+      URL 1
+      <input class="inputs-url js-first" type="url"></input>
+    </label>
+    <label class="inputs-label">
+      URL 2
+      <input class="inputs-url js-second" type="url"></input>
+    </label>
 
-  <button type="button">COMPARE</button>
-</section>
+    <button type="button">COMPARE</button>
+  </section>
 
-<section class="results is-animated results--headers">
-  <h3 class="results-title">HEADERS</h3>
-  <div class="results-bg">
-    <pre class="results-content js-headers"></pre>
-  </div>
-</section>
+  <section class="results is-animated results--headers">
+    <h3 class="results-title">HEADERS</h3>
+    <div class="results-bg">
+      <pre class="results-content js-headers"></pre>
+    </div>
+  </section>
 
-<section class="results is-animated results--body">
-  <h3 class="results-title">BODY</h3>
-  <div class="results-bg">
-    <pre class="results-content js-body"></pre>
-  </div>
-</section>
+  <section class="results is-animated results--body">
+    <h3 class="results-title">BODY</h3>
+    <div class="results-bg">
+      <pre class="results-content js-body"></pre>
+    </div>
+  </section>
+</main>
 
 <footer>
-  <span>made by @lechienvic</span>
+  <span>made by <a href="http://victordg.com">Victor Delgado</a></span>
 </footer>
 
-<script src="app.js"></script>
+<script src="dist/app.js"></script>
 
 </body>
 </html>

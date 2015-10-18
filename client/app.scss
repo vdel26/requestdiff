@@ -13,11 +13,25 @@ html, body {
   margin: 0;
   background-color: $lightblue;
   box-sizing: border-box;
-  font-family: -apple-system, 'Roboto', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
 }
 
 *, *:before, *:after {
   box-sizing: inherit;
+}
+
+body {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+header, footer {
+  flex: none;
 }
 
 // debug layout
@@ -27,6 +41,8 @@ html, body {
 
 .title {
   display: block;
+  height: 4rem;
+  width: 100%;
   margin: 1rem 0 2rem;
   padding: 0 1rem;
   transition: 0.3s ease transform;
@@ -34,7 +50,7 @@ html, body {
 
 .title-text {
   font-size: 2rem;
-  font-weight: 800;
+  font-weight: 900;
   font-style: italic;
   transition: 0.3s ease all;
 }
@@ -161,19 +177,28 @@ button {
 }
 
 footer {
-  margin: 5rem 0 1rem;
+  margin: 5rem 0 2rem;
   text-align: center;
   color: $darkblue;
+  -webkit-font-smoothing: antialiased;
+
+  a {
+    color: $darkblue;
+    text-decoration: none;
+    border-bottom: 1px dotted $darkblue;
+  }
 }
 
 @media screen and (min-width: 32em) {
-  .inputs, .title {
+  .inputs {
     width: $container-width;
     padding: 0;
   }
 
   .title {
+    width: $container-width;
     margin: 2rem auto 3rem;
+    padding: 0;
   }
 
   button {
@@ -214,7 +239,8 @@ footer {
    */
 
   .title.is-animated {
-    transform: translateX(25%) translateY(100%);
+    // translateX = ($container-width - max-svg-width)/2
+    transform: translateX(255px) translateY(100%);
 
     & > .title-text {
       font-size: 4rem;
@@ -228,5 +254,14 @@ footer {
   .results.is-animated {
     opacity: 0;
     transform: translateY(20rem);
+  }
+
+  footer {
+    opacity: 0.6;
+    transition: 0.2s opacity;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 }
