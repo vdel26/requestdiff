@@ -13,6 +13,10 @@
     second.classList.add('inputs-url--green');
   };
 
+  const displayError = (statusText) => {
+    console.error('Error loading requests...');
+  };
+
   const prettyPrint = (response) => {
     try {
       return JSON.stringify(JSON.parse(response), null, '\t');
@@ -20,16 +24,24 @@
     catch (e) { return response; }
   }
 
+  const successHandler = (xhr, cb) => {
+    animateIntro();
+    cb(null, xhr.response);
+  };
+
+  const errorHandler = (xhr, cb) => {
+    console.error(xhr.statusText);
+    cb(xhr.statusText);
+  };
+
   const request = (url, cb) => {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
-    xhr.onload = function (evt) {
-      animateIntro();
-      cb(null, xhr.response);
+    xhr.onload = (evt) => {
+      if (xhr.status === 200) successHandler(xhr, cb);
+      else errorHandler(xhr, cb);
     };
-    xhr.onerror = function (evt) {
-      throw new Error(xhr.statusText);
-    };
+    xhr.onerror = (evt) => errorHandler(xhr, cb);
     xhr.send();
   }
 
@@ -61,6 +73,8 @@
     body.innerHTML = '';
 
     request(url, function (err, res) {
+      if (err) return displayError(err);
+
       let data = JSON.parse(res);
       compare(prettyPrint(data.first.headers),
               prettyPrint(data.second.headers),

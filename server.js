@@ -42,7 +42,10 @@ const formatRes = (res1, res2) => {
 const proxy = (q, cb) => {
   console.log(q);
   request(q.url1, (err1, res1) => {
+    if (err1) return cb(err1);
+
     request(q.url2, (err2, res2) => {
+      if (err2) return cb(err2);
       const msg = formatRes(res1, res2);
       console.log(msg);
       cb(null, msg);
@@ -59,9 +62,16 @@ const handler = (req, res) => {
   const parsedUrl = url.parse(req.url);
 
   if (parsedUrl.pathname === '/proxy') {
-    res.writeHead(200, 'Content-Type: application/json');
     const params = query.parse(parsedUrl.query);
-    proxy(params, (err, msg) => res.end(JSON.stringify(msg)));
+    proxy(params, (err, msg) => {
+      if (err) {
+        console.error(err);
+        res.writeHead(400, 'Content-Type: application/json');
+        return res.end();
+      }
+      res.writeHead(200, 'Content-Type: application/json');
+      res.end(JSON.stringify(msg));
+    })
   }
   else {
     console.log(parsedUrl.path);
