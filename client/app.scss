@@ -59,7 +59,8 @@ header {
 }
 
 .inputs {
-  display: block;
+  display: flex;
+  flex-direction: column;
   margin: 0 auto;
   padding: 0 1rem;
   transform: translateY(0);
@@ -216,6 +217,8 @@ footer {
   }
 
   .inputs {
+    flex-direction: row;
+    justify-content: space-between;
     width: $container-width;
     padding: 0;
   }
@@ -226,13 +229,14 @@ footer {
   }
 
   .inputs-url {
-    width: 300px;
+    width: 21rem;
   }
 
   button {
     display: inline-block;
+    align-self: center;
     width: 112px;
-    margin: 0;
+    margin: 1.5rem 0 0 0;
 
     &:hover {
       background-color: $brightblue;
@@ -259,7 +263,7 @@ footer {
 
   .title.is-animated {
     // translateX = ($container-width - max-svg-width)/2
-    transform: translateX(255px) translateY(100%);
+    transform: translateX(255px) translateY(10rem);
 
     & > .title-text {
       font-size: 4rem;
@@ -271,7 +275,7 @@ footer {
    */
 
   .inputs.is-animated {
-    transform: translateY(50%);
+    transform: translateY(10rem);
   }
 
   footer {
