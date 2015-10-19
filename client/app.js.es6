@@ -14,6 +14,7 @@
   };
 
   const displayError = (statusText) => {
+    // TODO: show proper error message in UI
     console.error('Error loading requests...');
   };
 

@@ -39,28 +39,32 @@ header, footer {
 //   border: 1px solid red;
 // }
 
+header {
+  padding: 0 1rem;
+}
+
 .title {
   display: block;
   height: 4rem;
   width: 100%;
   margin: 1rem 0 2rem;
-  padding: 0 1rem;
-  transition: 0.3s ease transform;
+  transition: transform 0.3s ease;
 }
 
 .title-text {
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: 900;
   font-style: italic;
-  transition: 0.3s ease all;
+  transition: all 0.3s ease;
 }
 
 .inputs {
   display: block;
   margin: 0 auto;
   padding: 0 1rem;
-  transition: 0.3s ease transform;
   transform: translateY(0);
+  transition: transform 0.3s ease;
+  will-change: transform;
 }
 
 button {
@@ -75,7 +79,7 @@ button {
   background-color: $darkblue;
   cursor: pointer;
   outline: none;
-  transition: 0.2s all;
+  transition: all 0.2s;
 
   &:active {
     background-color: $brightblue;
@@ -99,7 +103,8 @@ button {
   outline: none;
   width: 100%;
   color: $black;
-  transition: 0.2s all;
+  transition: all 0.2s;
+  appearance: none;
 
   &:focus {
     box-shadow: 0 0 0 3px rgba(92, 122, 255, 0.5);
@@ -107,21 +112,22 @@ button {
 }
 
 .inputs-url--red {
-  border: 0;
+  border: 1px solid transparent;
   box-shadow: 0 0 0 3px rgba(255, 59, 48, 0.3);
 }
 
 .inputs-url--green {
-  border: 0;
+  border: 1px solid transparent;
   box-shadow: 0 0 0 3px rgba(90, 249, 178, 0.3);
 }
 
 .results {
   display: block;
   position: relative;
-  transition: 0.3s ease all;
   opacity: 1;
   transform: translateX(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  will-change: transform, opacity;
 }
 
 .results::after {
@@ -189,16 +195,38 @@ footer {
   }
 }
 
+/**
+ * results animation
+ */
+
+.results.is-animated {
+  opacity: 0;
+  transform: translateY(20rem);
+}
+
 @media screen and (min-width: 32em) {
+  .title {
+    width: $container-width;
+    margin: 2rem auto 3rem;
+    padding: 0;
+  }
+
+  .title-text {
+    font-size: 2rem;
+  }
+
   .inputs {
     width: $container-width;
     padding: 0;
   }
 
-  .title {
-    width: $container-width;
-    margin: 2rem auto 3rem;
-    padding: 0;
+  .inputs-label {
+    display: inline-block;
+    margin: 0.5rem 1rem 0 0;
+  }
+
+  .inputs-url {
+    width: 300px;
   }
 
   button {
@@ -217,15 +245,6 @@ footer {
     }
   }
 
-  .inputs-label {
-    display: inline-block;
-    margin: 0.5rem 1rem 0 0;
-  }
-
-  .inputs-url {
-    width: 300px;
-  }
-
   .results-title {
     padding: 0;
   }
@@ -235,7 +254,7 @@ footer {
   }
 
   /**
-   * response animation
+   * title animation
    */
 
   .title.is-animated {
@@ -247,18 +266,17 @@ footer {
     }
   }
 
+  /**
+   * inputs animation
+   */
+
   .inputs.is-animated {
     transform: translateY(50%);
   }
 
-  .results.is-animated {
-    opacity: 0;
-    transform: translateY(20rem);
-  }
-
   footer {
     opacity: 0.6;
-    transition: 0.2s opacity;
+    transition: opacity 0.2s;
 
     &:hover {
       opacity: 1;
