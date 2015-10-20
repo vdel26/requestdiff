@@ -13,7 +13,7 @@ html, body {
   margin: 0;
   background-color: $lightblue;
   box-sizing: border-box;
-  font-family: -apple-system, 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+  font-family: 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
 }
 
 *, *:before, *:after {
@@ -68,10 +68,11 @@ header {
   will-change: transform;
 }
 
-button {
+.inputs-button {
   height: 3rem;
   width: 100%;
   margin: 1rem auto;
+  padding: 3px auto;
   vertical-align: 2px;
   border: none;
   border-radius: 30px;
@@ -233,8 +234,9 @@ footer {
     width: 21rem;
   }
 
-  button {
+  .inputs-button {
     display: inline-block;
+    padding: 3px 6px;
     align-self: center;
     width: 112px;
     margin: 1.5rem 0 0 0;
@@ -263,7 +265,7 @@ footer {
    */
 
   .title.is-animated {
-    // translateX = ($container-width - max-svg-width)/2
+    // dx = ($container-width - max-svg-width)/2
     transform: translateX(255px) translateY(10rem);
 
     & > .title-text {
