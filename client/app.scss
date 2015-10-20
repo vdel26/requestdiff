@@ -6,6 +6,7 @@ $darkgrey: #555;
 $black: #333;
 $darkgreen: #123F26;
 $darkred: #5D2121;
+$errorred: #FF0B00;
 $container-width: 840px;
 
 html, body {
@@ -66,6 +67,24 @@ header {
   transform: translateY(0);
   transition: transform 0.3s ease;
   will-change: transform;
+}
+
+.inputs::after {
+  content: attr(data-errors);
+  position: absolute;
+  bottom: -1rem;
+  left: 0;
+  right: 0;
+  color: $errorred;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(1rem);
+  transition: opacity .3s ease, transform .3s ease;
+}
+
+.inputs.is-error::after {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .inputs-button {
@@ -185,7 +204,7 @@ header {
 }
 
 footer {
-  margin: 5rem 0 2rem;
+  margin: 3rem 0 2rem;
   text-align: center;
   color: $darkblue;
   -webkit-font-smoothing: antialiased;
@@ -223,6 +242,10 @@ footer {
     justify-content: space-between;
     width: $container-width;
     padding: 0;
+  }
+
+  .inputs::after {
+    bottom: -2rem;
   }
 
   .inputs-label {

@@ -5,6 +5,7 @@
   let second = document.querySelector('.js-second');
   let headers = document.querySelector('.js-headers');
   let body = document.querySelector('.js-body');
+  let inputs = document.querySelector('.js-inputs');
 
   const animateIntro = () => {
     let elems = document.querySelectorAll('.is-animated');
@@ -13,8 +14,12 @@
     second.classList.add('inputs-url--green');
   };
 
-  const displayError = (statusText) => {
-    // TODO: show proper error message in UI
+  const displayError = (errorMessage) => {
+    inputs.dataset.errors = `Error – ${errorMessage}`;
+    inputs.classList.add('is-error');
+    setTimeout(() => {
+      inputs.classList.remove('is-error');
+    }, 5000);
     console.error('Error loading requests...');
   };
 
@@ -32,7 +37,8 @@
 
   const errorHandler = (xhr, cb) => {
     console.error(xhr.statusText);
-    cb(xhr.statusText);
+    let error = xhr.response ? xhr.response : xhr.statusText;
+    cb(error);
   };
 
   const request = (url, cb) => {
