@@ -127,6 +127,12 @@ header {
   transition: all 0.2s;
   appearance: none;
 
+  &:invalid,
+  &:-moz-submit-invalid
+  &:-moz-ui-invalid {
+    box-shadow: none;
+  }
+
   &:focus {
     box-shadow: 0 0 0 3px rgba(92, 122, 255, 0.5);
   }
