@@ -78,13 +78,14 @@ header {
   color: $errorred;
   text-align: center;
   opacity: 0;
-  transform: translateY(1rem);
+  transform: translate3d(0, 1rem, 0);
   transition: opacity .3s ease, transform .3s ease;
+  will-change: opacity, transform;
 }
 
 .inputs.is-error::after {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0);
 }
 
 .inputs-button {
