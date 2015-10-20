@@ -20,7 +20,6 @@
     setTimeout(() => {
       inputs.classList.remove('is-error');
     }, 5000);
-    console.error('Error loading requests...');
   };
 
   const prettyPrint = (response) => {
@@ -71,7 +70,25 @@
     element.appendChild(frag);
   }
 
+  const validateInputs = () => {
+    let valid1 = first.checkValidity();
+    let valid2 = second.checkValidity();
+
+    if (valid1 && valid2) return true;
+
+    const msg = (()=> {
+      if (!valid1 && !valid2) return 'Invalid URLs';
+      else if (!valid1) return 'URL 1 is invalid';
+      else return 'URL 2 is invalid';
+    })();
+
+    displayError(msg);
+    return false;
+  };
+
   const start = () => {
+    if (!validateInputs()) return;
+
     let firstURL = first.value;
     let secondURL = second.value;
     let url = `/proxy?url1=${firstURL}&url2=${secondURL}`;
