@@ -89,8 +89,8 @@
   const start = () => {
     if (!validateInputs()) return;
 
-    let firstURL = first.value;
-    let secondURL = second.value;
+    let firstURL = encodeURIComponent(first.value);
+    let secondURL = encodeURIComponent(second.value);
     let url = `/proxy?url1=${firstURL}&url2=${secondURL}`;
 
     headers.innerHTML = '';
