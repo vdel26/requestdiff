@@ -7,6 +7,7 @@ const fs      = require('fs');
 const statics = require('serve-static');
 const request = require('request');
 
+const req = request.defaults({ gzip: true });
 const serve = statics('client');
 
 /**
@@ -41,10 +42,10 @@ const formatRes = (res1, res2) => {
 
 const proxy = (q, cb) => {
   console.log(q);
-  request(q.url1, (err1, res1) => {
+  req(q.url1, (err1, res1) => {
     if (err1) return cb(err1);
 
-    request(q.url2, (err2, res2) => {
+    req(q.url2, (err2, res2) => {
       if (err2) return cb(err2);
       const msg = formatRes(res1, res2);
       console.log(msg);
